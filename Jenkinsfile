@@ -9,8 +9,19 @@ pipeline {
     }
 
     stage('Build') {
-      steps {
-        sh 'gcc --version'
+      parallel {
+        stage('Build') {
+          steps {
+            sh 'gcc --version'
+          }
+        }
+
+        stage('Build Web') {
+          steps {
+            sh 'php --version'
+          }
+        }
+
       }
     }
 
